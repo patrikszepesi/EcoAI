@@ -1,0 +1,49 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "next start",
+    "clear-all": "rimraf ./.cache ./.next ./node_modules ./package-lock.json"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "aos": "^2.3.4",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "clsx": "^1.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.6",
+    "next": "^11.0.1",
+    "next-images": "^1.8.4",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-aws-s3": "^1.5.0",
+    "react-calendar": "^4.0.0",
+    "react-canvas-draw": "^1.2.1",
+    "react-countup": "^4.3.3",
+    "react-dom": "^17.0.2",
+    "react-hot-toast": "^2.0.0",
+    "react-icons": "^4.7.1",
+    "react-image-size": "^2.0.0",
+    "react-lazy-load-image-component": "^1.5.1",
+    "react-visibility-sensor": "^5.1.1",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}

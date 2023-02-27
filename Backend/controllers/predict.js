@@ -32,7 +32,7 @@ export const predictImage = async (req, res) => {
     const params =
       {
       Bucket: 'object-detection-plastic-batch-transform', // pass your bucket name
-      Key: `images/${year}/${month}/${day}/${name}`, // file will be saved as testBucket/contacts.csv
+      Key: `images/${year}/${month}/${day}/${name}`, // 
       Body: buffer
       };
 

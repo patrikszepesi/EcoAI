@@ -3,9 +3,18 @@ const AWS = require('aws-sdk');
 
 const d =  new Date().toLocaleDateString();
 
-let day=d.slice(0,2)
-let month= d.slice(3,5)
-let year=d.slice(6,10)
+let day=d.slice(2,4)
+let month= d.slice(0,1)
+let year=d.slice(5,10)
+
+if(day<10){
+    day = `0${day}`
+}
+if(month<10){
+    month = `0${month}`
+}
+
+console.log(year,month,day)
 
 
 const s3 = new AWS.S3({
@@ -31,8 +40,8 @@ export const predictImage = async (req, res) => {
 
     const params =
       {
-      Bucket: 'object-detection-plastic-batch-transform', // pass your bucket name
-      Key: `images/${year}/${month}/${day}/${name}`, // 
+      Bucket: 'plastic-detection-batch-transform-2023', // pass your bucket name
+      Key: `images/${year}/${month}/${day}/${name}`, //
       Body: buffer
       };
 

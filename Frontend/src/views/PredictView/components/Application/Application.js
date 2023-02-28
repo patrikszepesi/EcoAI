@@ -59,7 +59,6 @@ const Application = props => {
   const classes = useStyles();
 
 
-  const [baseImage, setBaseImage] = useState("");
   const [responseFromBackend,setResponseFromBackend]=useState("")
   const [files, setFiles] = useState([]);
   const [backendStatuses,setBackendStatuses]= useState([]);
@@ -72,21 +71,7 @@ const Application = props => {
 
 
   const uploadImage = async (e) => {
-    console.log("b4")
-    console.log(e)
-    console.log(e.name)
-    console.log("after")
     const base64 = await convertBase64(e);
-    /*
- Using await pauses the execution of its surrounding async function until the promise is settled
-  (that is, fulfilled or rejected).
-  When execution resumes, the value of the await expression becomes that of the fulfilled promise
-  //This is why we first see the base64 value and not the async or sync at the bottom
-    */
-    console.log("gggggggg")
-    console.log(base64)
-    console.log("hhhhhh")
-    setBaseImage(base64);
     axios
       .post(
         "/api/predict",
@@ -102,7 +87,6 @@ const Application = props => {
       .catch(err => {
         console.log('Error', err);
       });
-      console.log("async or sync?")
   };
 
 
@@ -123,7 +107,7 @@ const Application = props => {
     });
   };
 
-function foo(status){
+function status(status){
   if(status && status!= undefined){
     if(status == 'Success'){
       return <FcCheckmark/>
@@ -145,7 +129,6 @@ const handleClick = (event) => {
     for (let i = 0; i < newArr.length; i++) {
       setFiles((prevState) => ([ ...prevState, newArr[i].name]));
       uploadImage(newArr[i]);
-      console.log("for loop end of one iteration")
       //console.log(newArr[i].name)
     }
   };
@@ -210,7 +193,7 @@ const handleClick = (event) => {
 
     {Object.keys(files).map((keyName, i) => (
     <li className="travelcompany-input" key={i}>
-        <span className="input-label"> Filename: {files[keyName]} {backendStatuses[i] ? foo(backendStatuses[i]) : <Image
+        <span className="input-label"> Filename: {files[keyName]} {backendStatuses[i] ? status(backendStatuses[i]) : <Image
   src={'https://media1.giphy.com/media/3o7bu3XilJ5BOiSGic/200w.webp?cid=ecf05e47pn2fi04f77lmd1v731vpy573o5ghrq1cnmgzbp1e&rid=200w.webp&ct=g'}
   height={10}
   width={10}

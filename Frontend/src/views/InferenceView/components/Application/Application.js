@@ -14,13 +14,6 @@ import { useImageSize } from 'react-image-size';
 
 
 
-//import reactImageSize from 'react-image-size';
-
-
-
-
-
-
 const useStyles = makeStyles(theme => ({
   container: {
   position: 'relative'
@@ -82,19 +75,16 @@ const Application = props => {
 
 
   const [value, onChange] = useState(new Date());
-  const [arrays,setArrays]= useState([]);
+  const [images,setImages]= useState([]);
   const [hasImages,setHasImages]=useState(null)
 
-  useEffect(() => {
-    console.log('Something happened')
-  }, [value,hasImages]); // Only re-run the effect if files changes
 
     useEffect(() => {
       callBackend();
     }, [value]);
 
 
-//month is zero based, add 1
+    //month is zero based, add 1
     let month = value.getMonth() + 1;
     let day = value.getDate();
     let year = value.getFullYear();
@@ -108,9 +98,6 @@ const Application = props => {
     }
 
 
-
-
-
   const callBackend = async (e) => {
 
     axios
@@ -119,29 +106,14 @@ const Application = props => {
         { year, month, day }, //send this data to our server, and our server will send data to aws endpoint
       )
       .then(res => {
-
-
-          setArrays(Object.entries(res.data.imageData))
-          setHasImages(res.data.hasImages)
+          //setArrays(Object.entries(res.data))
+          setImages(res.data)
 
       })
       .catch(err => {
         console.log('Error', err);
       });
   };
-
-
-let urls =[]
-
-  for (const [key, value] of Object.entries(arrays)) {
-    urls.push(`https://plastic-detection-batch-transform-2023.s3.eu-west-1.amazonaws.com/${value[1].Key}`)
-      console.log(urls)
-}
-
-
-
-
-
 
 
   const theme = useTheme();
@@ -151,24 +123,16 @@ let urls =[]
 
 
 
-let display;
+console.log(images)
 
-if (hasImages==true) {
-  display=
-  /*urls.map(u => {
-        return <img key={u} src={u} alt="can't show image" />;
-      });*/
-      arrays.map((imageData) => (
-        <img
-          key={imageData[1].Key}
-          src={`https://plastic-detection-batch-transform-2023.s3.amazonaws.com/${imageData[1].Key}`}
-          alt="Image"
-        />
-      ))
 
- }else if(hasImages==false){
-   display= <p>Please Select a valid date</p>
- }
+let display = images.map((image, index) => (
+    <img
+      key={index}
+      src={`data:image/jpeg;base64,${image.data}`}
+      alt={`Image ${index}`}
+    />
+  ))
 
 
 
@@ -189,8 +153,6 @@ if (hasImages==true) {
           <Calendar onChange={onChange} value={new Date()} />
       </Grid>
       <div className={classes.form}>
-
-
       </div>
     </div>
     <br/>

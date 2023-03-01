@@ -10,9 +10,6 @@ const s3 = new AWS.S3({
 export const getInference = async (req, res) => {
   try {
     const { year, month, day } = req.body;
-    console.log(year)
-    console.log(month)
-    console.log(day)
 
     if (!year) return res.status(400).send("No date");
 

@@ -1,18 +1,14 @@
 import axios from 'axios'
 const AWS = require('aws-sdk');
 
-const d =  new Date().toLocaleDateString();
 
-let day=d.slice(2,4)
-let month= d.slice(0,1)
-let year=d.slice(5,10)
 
-if(day<10){
-    day = `0${day}`
-}
-if(month<10){
-    month = `0${month}`
-}
+var dateStr = new Date().toISOString().slice(0, 10);
+var year = dateStr.slice(0, 4);
+var month = dateStr.slice(5, 7);
+var day = dateStr.slice(8, 10);
+
+
 
 console.log(year,month,day)
 

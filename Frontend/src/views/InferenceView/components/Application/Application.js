@@ -74,7 +74,7 @@ const Application = props => {
   const classes = useStyles();
 
 
-  const [value, onChange] = useState(new Date());
+  const [value, setValue] = useState(new Date());
   const [images,setImages]= useState([]);
   const [hasImages,setHasImages]=useState(null)
 
@@ -88,6 +88,7 @@ const Application = props => {
     let month = value.getMonth() + 1;
     let day = value.getDate();
     let year = value.getFullYear();
+
 
 
     if(day<10){
@@ -123,9 +124,6 @@ const Application = props => {
 
 
 
-console.log(images)
-
-
 let display = images.map((image, index) => (
     <img
       key={index}
@@ -150,7 +148,7 @@ let display = images.map((image, index) => (
         align={isMd ? 'center' : 'left'}
       />
       <Grid container spacing={isMd ? 4 : 2}>
-          <Calendar onChange={onChange} value={new Date()} />
+          <Calendar onChange={setValue} value={new Date()} />
       </Grid>
       <div className={classes.form}>
       </div>

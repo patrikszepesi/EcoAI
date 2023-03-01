@@ -58,8 +58,6 @@ const Application = props => {
   const { className, ...rest } = props;
   const classes = useStyles();
 
-
-  const [responseFromBackend,setResponseFromBackend]=useState("")
   const [files, setFiles] = useState([]);
   const [backendStatuses,setBackendStatuses]= useState([]);
 
@@ -79,7 +77,6 @@ const Application = props => {
       )
       .then(res => {
         console.log(res)
-          setResponseFromBackend(res.data.message)
           setBackendStatuses((prevState) => ([ ...prevState, res.data.status]));
 
 
